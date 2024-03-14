@@ -1,0 +1,57 @@
+{
+  "default":"en",
+  "cz":{
+    "appName":"Umělý Horizont",
+    "cfgName":"Nastavení umělého horizontu",
+    "rollSensor":"Senzor klonění",
+    "pitchSensor":"Senzor klopení",
+    "altSensor":"Senzor výšky",
+    "varioSensor":"Senzor varia",
+    "speedSensor":"Senzor rychlosti",
+    "hdgSensor":"Senzor kurzu",
+    "distSensor":"Senz. vzdálenosti"
+  },
+  "en":{
+    "appName":"Artificial Horizon",
+    "cfgName":"Artificial horizon settings",
+    "rollSensor":"Roll sensor",
+    "pitchSensor":"Pitch sensor",
+    "altSensor":"Altitude sensor",
+    "varioSensor":"Vario sensor",
+    "speedSensor":"Speed sensor",
+    "hdgSensor":"Heading sensor",
+    "distSensor":"Distance sensor"
+  },
+  "de":{
+    "appName":"Künstlicher Horizont",
+    "cfgName":"Einstellungen künstl. Horizont",
+    "rollSensor":"Rollsensor",
+    "pitchSensor":"Nicksensor",
+    "altSensor":"Höhensensor",
+    "varioSensor":"Variosensor",
+    "speedSensor":"Geschw.sensor",
+    "hdgSensor":"Richtungssensor",
+    "distSensor":"Entfernungssensor"
+  },"fr":{
+    "appName":"Horizon artificiel", 
+    "cfgName":"Réglage horizon artificiel",
+    "rollSensor":"Capteur de roulis",
+    "pitchSensor":"Capteur tangage",
+    "altSensor":"Capteur d'altitude",
+    "varioSensor":"Capteur vario",
+    "speedSensor":"Capteur de vitesse",
+    "hdgSensor":"Capteur de direction",
+    "distSensor":"Capteur de distance"
+  },
+  "it":{
+    "appName":"Orizzonte Artificiale",
+    "cfgName":"Impostazioni Orizzonte Artificiale",
+    "rollSensor":"Sensore Rollio",
+    "pitchSensor":"Sensore Beccheggio",
+    "altSensor":"Sensore Altitudine",
+    "varioSensor":"Sensore Vario",
+    "speedSensor":"Sensore Velocità",
+    "hdgSensor":"Sensore Direzione",
+    "distSensor":"Sensore Distanza"
+  }
+}

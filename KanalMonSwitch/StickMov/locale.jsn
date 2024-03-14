@@ -1,0 +1,33 @@
+{
+  "default":"de",
+  "en":{
+    "appName":"ChannelMon",
+    "fullName":"Channel Monitor Switch",
+    "switch":"Main switch",
+    "channels":"Channels to be monitored:",
+    "channel_p1":"Channel P1",
+    "channel_p2":"Channel P2",
+    "channel_p3":"Channel P3",
+    "channel_p4":"Channel P4",
+    "output_state":"App. Output Switch State:",
+    "outputswitch_label_long":"Stick monitor switch",
+    "outputswitch_label_short":"C/S",
+    "switch_off":"Off",
+    "switch_on":"On"
+  },
+  "de":{
+    "appName":"KanalMon",
+    "fullName":"Kanalmonitorschalter",
+    "switch":"Haupt-Schalter",
+    "channels":"Zu überwachende Kanäle:",
+    "channel_p1":"Kanal P1",
+    "channel_p2":"Kanal P2",
+    "channel_p3":"Kanal P3",
+    "channel_p4":"Kanal P4",
+    "output_state":"App.-Schalter:",
+    "outputswitch_label_long":"Kanalmonitor-Schalter",
+    "outputswitch_label_short":"K/S",
+    "switch_off":"Aus",
+    "switch_on":"An"
+  }
+}

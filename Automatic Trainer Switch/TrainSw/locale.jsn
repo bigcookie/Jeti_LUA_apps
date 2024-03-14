@@ -1,0 +1,37 @@
+{
+  "default":"en",
+  "cz":{
+    "appName":"Auto Přep.Výcviku",
+    "fullName":"Automatický Přepínač Výcviku",
+    "audioTeacher":"Audio Učitel",
+    "audioStudent":"Audio Student",
+    "switch":"Přepínač"
+  },
+  "en":{
+    "appName":"Auto TrainSwitch",
+    "fullName":"Automatic Training Switch",
+    "audioTeacher":"Audio Teacher",
+    "audioStudent":"Audio Student",
+    "switch":"Switch"
+  },
+  "de":{
+    "appName":"Auto-Trainersch.",
+    "fullName":"Trainerschalter automatisch",
+    "audioTeacher":"Audio Lehrer",
+    "audioStudent":"Audio Schüler",
+    "switch":"Schalter"
+  },"fr":{
+    "appName":"Auto TrainSwitch",
+    "fullName":"Interrupteur automatique d'écolage",
+    "audioTeacher":"Audio maître",
+    "audioStudent":"Audio élève",
+    "switch":"Interrupteur"
+  },
+  "it":{
+    "appName":"TrainSwitch Auto",
+    "fullName":"Interruttore Training Automatico",
+    "audioTeacher":"Audio Maestro",
+    "audioStudent":"Audio Allievo",
+    "switch":"Interruttore"
+  }
+}
