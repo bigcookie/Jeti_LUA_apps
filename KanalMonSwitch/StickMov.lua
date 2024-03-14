@@ -29,6 +29,7 @@ enable/disable the software switch.
 
 History:
  - Version 1.0 - First official release
+ - Version 1.1 - Fixed checkbox display on DC-16II, fixed translation
 
 --]]
 
@@ -88,19 +89,19 @@ local function initForm(formID)
   form.addLabel({label=lang.channels})
   form.addRow(3)
   form.addLabel({label=""})
-  form.addLabel({label=lang.channel_p1, width=260})
+  form.addLabel({label=lang.channel_p1})
   componentIndexP1 = form.addCheckbox(UseP1,checkClickedP1)
   form.addRow(3)
   form.addLabel({label=""})
-  form.addLabel({label=lang.channel_p2,width=260})
+  form.addLabel({label=lang.channel_p2})
   componentIndexP2 = form.addCheckbox(UseP2,checkClickedP2)
   form.addRow(3)
   form.addLabel({label=""})
-  form.addLabel({label=lang.channel_p3,width=260})
+  form.addLabel({label=lang.channel_p3})
   componentIndexP3 = form.addCheckbox(UseP3,checkClickedP3)
   form.addRow(3)
   form.addLabel({label=""})
-  form.addLabel({label=lang.channel_p4,width=260})
+  form.addLabel({label=lang.channel_p4})
   componentIndexP4 = form.addCheckbox(UseP4,checkClickedP4)  
   form.addSpacer(150,10)
   form.addRow(2)
@@ -126,8 +127,7 @@ local function init()
   UseP4 = system.pLoad("StickMon_UseP4", "false") == "true"
   switch = system.pLoad("switchgyro")
   system.registerForm(1,MENU_ADVANCED, lang.outputswitch_label_long, initForm,keyPressed, printForm);
---  ctrlIdx = system.registerControl(1, lang.outputswitch_label_long, lang.outputswitch_label_short) 
-  ctrlIdx = system.registerControl(2, "Kanalschalter", "K/S") 
+  ctrlIdx = system.registerControl(2, lang.outputswitch_label_long, lang.outputswitch_label_short) 
   collectgarbage()
 end
  
@@ -158,4 +158,4 @@ end
 
 ----------------- 
 setLanguage()
-return { init=init, loop=loop, author="André Kuhn", version="1.00",name=lang.appName}
+return { init=init, loop=loop, author="André Kuhn", version="1.10",name=lang.appName}

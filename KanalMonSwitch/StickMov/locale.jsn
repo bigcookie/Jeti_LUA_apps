@@ -9,8 +9,8 @@
     "channel_p2":"Channel P2",
     "channel_p3":"Channel P3",
     "channel_p4":"Channel P4",
-    "output_state":"App. Output Switch State:",
-    "outputswitch_label_long":"Stick monitor switch",
+    "output_state":"C/S Switch State:",
+    "outputswitch_label_long":"Channel switch",
     "outputswitch_label_short":"C/S",
     "switch_off":"Off",
     "switch_on":"On"
@@ -24,8 +24,8 @@
     "channel_p2":"Kanal P2",
     "channel_p3":"Kanal P3",
     "channel_p4":"Kanal P4",
-    "output_state":"App.-Schalter:",
-    "outputswitch_label_long":"Kanalmonitor-Schalter",
+    "output_state":"K/S-Schalter Status:",
+    "outputswitch_label_long":"Kanalschalter",
     "outputswitch_label_short":"K/S",
     "switch_off":"Aus",
     "switch_on":"An"
