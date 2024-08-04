@@ -1,0 +1,43 @@
+{
+  "default":"de",
+  "en":{
+    "appName":"Gyro Ctrl.",
+    "fullName":"Gyro Controller",
+    "switch":"Gyro main switch",
+    "channels":"Channels to be monitored:",
+    "channel_p1":"Channel P1",
+    "channel_p2":"Channel P2",
+    "channel_p3":"Channel P3",
+    "channel_p4":"Channel P4",
+    "output_state":"G/S Switch State:",
+    "outputswitch_label_long":"Gyro switch",
+    "outputswitch_label_short":"G/S",
+    "switch_off":"Off",
+    "switch_on":"On",
+    "switch_up":"Up",
+    "switch_down":"Down",
+    "switch_middle":"Middle",
+    "switch_error_wrongswitch":"Proportional 3-Way Switch required!",
+    "tolerance":"Tolerance [%]:"
+  },
+  "de":{
+    "appName":"Gyro Strg.",
+    "fullName":"Gyro Steuerung",
+    "switch":"Gyro Haupt-Schalter",
+    "channels":"Zu überwachende Kanäle:",
+    "channel_p1":"Kanal P1",
+    "channel_p2":"Kanal P2",
+    "channel_p3":"Kanal P3",
+    "channel_p4":"Kanal P4",
+    "output_state":"G/S-Schalter Status:",
+    "outputswitch_label_long":"Gyro-Schalter",
+    "outputswitch_label_short":"G/S",
+    "switch_off":"Aus",
+    "switch_on":"An",
+    "switch_up":"Oben",
+    "switch_down":"Unten",
+    "switch_middle":"Mitte",
+    "switch_error_wrongswitch":"Proportionalen 3-Wege Schalter auswählen!",
+    "tolerance":"Toleranz [%]:"
+  }
+}
