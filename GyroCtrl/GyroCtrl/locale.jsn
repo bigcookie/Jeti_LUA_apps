@@ -17,7 +17,8 @@
     "switch_up":"Up",
     "switch_down":"Down",
     "switch_middle":"Middle",
-    "switch_error_wrongswitch":"Proportional 3-Way Switch required!",
+    "error_wrongswitch":"Err: Proportional 3-Way Switch required!",
+    "error_registercontrol":"Err: App switch couldn't get registered!",
     "tolerance":"Tolerance [%]:"
   },
   "de":{
@@ -37,7 +38,8 @@
     "switch_up":"Oben",
     "switch_down":"Unten",
     "switch_middle":"Mitte",
-    "switch_error_wrongswitch":"Proportionalen 3-Wege Schalter auswählen!",
+    "error_wrongswitch":"Err: Proportionalen 3-Wege Schalter auswählen!",
+    "error_registercontrol":"Err: App-Schalter nicht registriert!",
     "tolerance":"Toleranz [%]:"
   }
 }

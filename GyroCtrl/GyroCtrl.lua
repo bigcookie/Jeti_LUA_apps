@@ -33,6 +33,7 @@ History:
  - Version 2.0 - Moved to 3-Way-Switch support to fully support no gyro, damping 
                  mode and heading hold mode without logical switch combinations.
                  Made controls in form only visible when correct switch is assigned
+ - Version 2.1 - Made control registration robust. Added destroy function.
 
 --]]
 
@@ -40,7 +41,8 @@ History:
 local lang
 local UseP1, UseP2, UseP3, UseP4, switch, tolerance
 local componentIndexP1, componentIndexP2, componentIndexP3, componentIndexP4, componentIndexSW, componentInputSW
-local switchstate, errorstate
+local switchstate = 1 
+local errorstate = 0
 local ctrlIdx 
 -------------- 
 
@@ -57,48 +59,50 @@ end
 
 --------------------------------------------------------------------
 -- Callback functions to set checkbox and save parameters
-local function checkClickedP1(value)
+local function onP1Changed(value)
     UseP1 = not value
     system.pSave("GyroCtrl_UseP1",UseP1 and "true" or "false")
     form.setValue(componentIndexP1, UseP1)
 end
 
-local function checkClickedP2(value)
+local function onP2Changed(value)
     UseP2 = not value
     system.pSave("GyroCtrl_UseP2",UseP2 and "true" or "false")
     form.setValue(componentIndexP2, UseP2)
 end
 
-local function checkClickedP3(value)
+local function onP3Changed(value)
     UseP3 = not value
     system.pSave("GyroCtrl_UseP3",UseP3 and "true" or "false")
     form.setValue(componentIndexP3, UseP3)
 end
 
-local function checkClickedP4(value)
+local function onP4Changed(value)
     UseP4 = not value
     system.pSave("GyroCtrl_UseP4",UseP4 and "true" or "false")
     form.setValue(componentIndexP4, UseP4)
 end
 
-local function toleranceChanged(value)
+local function onToleranceChanged(value)
     tolerance = value
     system.pSave("GyroCtrl_Tolerance",tolerance)
     form.setValue(componentIndexTol, tolerance)
 end
 
-
--- Check if Switch is a proportional 3-way switch, set and save parameter
-local function saveSwitch(value)
+local function onSwitchSelected(value)
     switch = value
     local table = system.getSwitchInfo(switch)
+-- Check if Switch is a proportional 3-way switch, set and save parameter
+-- Improvement for future: support standard switch as well just for heading hold on/off
     if (table.mode == "P" or table.mode == "PI") then
         system.pSave("GyroCtrl_GyroSwitch", switch)
         form.setValue(componentInputSW, switch)
         error_state = 0
     else
-        system.messageBox(lang.switch_error_wrongswitch, 3)
+        system.messageBox(lang.error_wrongswitch, 3)
         error_state = 1
+        switchstate = 1
+-- in case of error unregister switch and form control to show output
         switch = nil
         componentIndexSW = nil
     end
@@ -111,30 +115,31 @@ local function initForm(formID)
 --    form.addLabel({label=lang.fullName,font=2})
     form.addRow(2)
     form.addLabel({label=lang.switch})
-    componentInputSW = form.addInputbox(switch,true, saveSwitch)  
+    componentInputSW = form.addInputbox(switch,true, onSwitchSelected)  
+-- only show rest of form, if a suitable switch was selected
     if (error_state == 0) then
         form.addSpacer(150,10)
         form.addLabel({label=lang.channels})
         form.addRow(3)
         form.addLabel({label=""})
         form.addLabel({label=lang.channel_p1})
-        componentIndexP1 = form.addCheckbox(UseP1,checkClickedP1)
+        componentIndexP1 = form.addCheckbox(UseP1,onP1Changed)
         form.addRow(3)
         form.addLabel({label=""})
         form.addLabel({label=lang.channel_p2})
-        componentIndexP2 = form.addCheckbox(UseP2,checkClickedP2)
+        componentIndexP2 = form.addCheckbox(UseP2,onP2Changed)
         form.addRow(3)
         form.addLabel({label=""})
         form.addLabel({label=lang.channel_p3})
-        componentIndexP3 = form.addCheckbox(UseP3,checkClickedP3)
+        componentIndexP3 = form.addCheckbox(UseP3,onP3Changed)
         form.addRow(3)
         form.addLabel({label=""})
         form.addLabel({label=lang.channel_p4})
-        componentIndexP4 = form.addCheckbox(UseP4,checkClickedP4)  
+        componentIndexP4 = form.addCheckbox(UseP4,onP4Changed)  
         form.addSpacer(150,10)
         form.addRow(2)
         form.addLabel({label=lang.tolerance})
-        componentIndexTol = form.addIntbox(tolerance,1,100,0,0,1,toleranceChanged)  
+        componentIndexTol = form.addIntbox(tolerance,1,100,0,0,1,onToleranceChanged)  
         form.addSpacer(150,10)
         form.addRow(2)
         form.addLabel({label=lang.output_state})
@@ -154,17 +159,25 @@ end
 --------------- 
 -- Init function
 local function init()
+-- get persistent parameters from storage
     UseP1 = system.pLoad("GyroCtrl_UseP1", "false") == "true"
     UseP2 = system.pLoad("GyroCtrl_UseP2", "false") == "true"
     UseP3 = system.pLoad("GyroCtrl_UseP3", "false") == "true"
     UseP4 = system.pLoad("GyroCtrl_UseP4", "false") == "true"  
     tolerance = tonumber(system.pLoad("GyroCtrl_Tolerance","5"))
-    switch = system.pLoad("GyroCtrl_GyroSwitch")
+    switch = system.pLoad("GyroCtrl_GyroSwitch", nil)
+-- register configuration form
     system.registerForm(1,MENU_ADVANCED, lang.fullName, initForm, keyPressed, printForm)
-    ctrlIdx = system.registerControl(2, lang.outputswitch_label_long, lang.outputswitch_label_short) 
-    switchstate = 1 
-    errorstate = 0
-    collectgarbage()
+-- register software control switch as provided by application
+    for i = 1,11,1 do
+        ctrlIdx = system.registerControl(i, lang.outputswitch_label_long, lang.outputswitch_label_short) 
+        if (ctrlIdx) then
+            break
+        end
+        if (i==11) then
+            system.messageBox(lang.error_registercontrol, 3)
+        end
+    end
 end
  
 -------------- 
@@ -199,8 +212,15 @@ local function loop()
         system.setControl(ctrlIdx, switchstate, 1)
     end
 end
+
+local function destroy()
+    system.unregisterControl(ctrlIdx)
+    system.unregisterForm(1)
+    collectgarbage()
+end
+
  
 
 ----------------- 
 setLanguage()
-return { init=init, loop=loop, author="André Kuhn", version="1.20",name=lang.appName}
+return { init=init, loop=loop, author="André Kuhn", version="2.10",name=lang.appName}
